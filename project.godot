@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ColorTypingTool"
+config/name="Color Typing Tool"
 run/main_scene="res://src/homeScreen/HomeScreen.tscn"
 config/icon="res://icon.png"
 
