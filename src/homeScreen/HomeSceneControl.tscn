@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/fonts/Actor-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/styles/ButtonNormal.tres" type="StyleBox" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/styles/Focus.tres" type="StyleBox" id=6]
 [ext_resource path="res://src/homeScreen/philoPage.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=1]
 resource_name = "start"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera2D:position")
@@ -23,7 +23,7 @@ tracks/0/keys = {
 "values": [ Vector2( 512, -300 ), Vector2( 512, 300 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "to_main"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera2D:position")
@@ -38,7 +38,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1536, 300 ), Vector2( 512, 300 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "to_philo"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Camera2D:position")
@@ -53,11 +53,15 @@ tracks/0/keys = {
 "values": [ Vector2( 512, 300 ), Vector2( 1536, 300 ) ]
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 size = 96
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 64
 font_data = ExtResource( 1 )
 
@@ -72,23 +76,25 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "start"
-anims/start = SubResource( 9 )
-anims/to_main = SubResource( 7 )
-anims/to_philo = SubResource( 8 )
+anims/start = SubResource( 1 )
+anims/to_main = SubResource( 2 )
+anims/to_philo = SubResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-alignment = 1
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+custom_constants/separation = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="titleLabel" type="Label" parent="VBoxContainer"]
+margin_top = -1.0
 margin_right = 1024.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 1024, 300 )
-custom_fonts/font = SubResource( 1 )
+margin_bottom = 199.0
+rect_min_size = Vector2( 1024, 200 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.129412, 0.152941, 0.188235, 1 )
 text = "Color Typing Tool"
 align = 1
@@ -97,33 +103,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="toolTip" type="Label" parent="VBoxContainer"]
+margin_top = 206.0
+margin_right = 1024.0
+margin_bottom = 306.0
+rect_min_size = Vector2( 1024, 100 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.129412, 0.152941, 0.188235, 1 )
+text = "Press esc to come back here at any time"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="VBoxContainer"]
 margin_left = 387.0
-margin_top = 304.0
+margin_top = 314.0
 margin_right = 637.0
-margin_bottom = 429.0
+margin_bottom = 439.0
 rect_min_size = Vector2( 250, 125 )
 size_flags_horizontal = 4
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/focus = ExtResource( 6 )
 custom_styles/normal = ExtResource( 2 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color_disabled = Color( 0.129412, 0.152941, 0.188235, 1 )
 text = "Start"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 margin_left = 387.0
-margin_top = 433.0
+margin_top = 446.0
 margin_right = 637.0
-margin_bottom = 558.0
+margin_bottom = 571.0
 rect_min_size = Vector2( 250, 125 )
 size_flags_horizontal = 4
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/focus = ExtResource( 6 )
 custom_styles/normal = ExtResource( 2 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color_disabled = Color( 0.129412, 0.152941, 0.188235, 1 )
 text = "About"
 
